@@ -1,12 +1,24 @@
+import { StatusCodes } from "http-status-codes";
 import { NotImplemented } from "../errors/notImplemented.error.js";
+import { ProblemRepository } from "../respository/index.js";
+import { ProblemService } from "../services/index.js";
+
+const problemService = new ProblemService(new ProblemRepository());
 
 export function pingProblemController(req, res) {
   res.json({ message: "Problem controller is up" });
 }
 
-export function addProblem(req, res, next) {
+export async function addProblem(req, res, next) {
   try {
-    throw new NotImplemented("Add Problem");
+    console.log("incoming req body: ", req.body);
+    const newProblem = await problemService.createProblem(req.body);
+    return res.status(StatusCodes.CREATED).json({
+      success: true,
+      message: "Succcessfully created a new problem",
+      error: {},
+      data: newProblem,
+    });
   } catch (error) {
     next(error);
   }
