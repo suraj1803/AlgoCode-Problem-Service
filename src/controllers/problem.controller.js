@@ -51,9 +51,15 @@ export async function getProblems(req, res, next) {
   }
 }
 
-export function deleteProblem(req, res, next) {
+export async function deleteProblem(req, res, next) {
   try {
-    throw new NotImplemented("Delete Problem");
+    const problem = await problemService.deleteProblem(req.params.id);
+    return res.status(StatusCodes.OK).json({
+      success: true,
+      message: "Succcessfully deleted a problem",
+      error: {},
+      data: problem,
+    });
   } catch (error) {
     next(error);
   }

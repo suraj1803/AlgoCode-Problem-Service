@@ -19,4 +19,9 @@ export class ProblemRepository {
     const problem = await Problem.findById(id);
     return problem;
   }
+
+  async deleteProblem(id) {
+    const problem = await Problem.findByIdAndDelete(id);
+    return problem;
+  }
 }
