@@ -1,7 +1,15 @@
-import { BaseError } from "./BaseError.js";
+import { BaseError } from "./base.error.js";
 
 export class NotFoundError extends BaseError {
-  constructor(details) {
-    super("Not Found Error", 404, "Resource not  found", details);
+  constructor(resourceName, resourceValue) {
+    super(
+      "Not Found Error",
+      404,
+      `The requested resource : ${resourceName} with value ${resourceValue} not found`,
+      {
+        resourceName,
+        resourceValue,
+      },
+    );
   }
 }

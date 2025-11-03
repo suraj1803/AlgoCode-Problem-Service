@@ -1,3 +1,4 @@
+import { NotFoundError } from "../errors/notfound.error.js";
 import { sanitizeMarkdown } from "../utils/index.js";
 
 export class ProblemService {
@@ -15,5 +16,13 @@ export class ProblemService {
   async getAllProblems() {
     const problems = await this.problemRepository.getAllProblems();
     return problems;
+  }
+
+  async getProblem(id) {
+    const problem = await this.problemRepository.getProblem(id);
+    if (!problem) {
+      throw new NotFoundError("Problem", "Id");
+    }
+    return problem;
   }
 }
