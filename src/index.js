@@ -5,6 +5,7 @@ import { apiRouter } from "./routes/index.js";
 import { BaseError } from "./errors/base.error.js";
 import { errorHandler } from "./utils/errorHandler.js";
 import { connectToDb } from "./config/db.config.js";
+import { Problem } from "./models/index.js";
 
 const app = express();
 

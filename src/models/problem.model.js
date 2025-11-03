@@ -10,7 +10,7 @@ const problemSchema = new mongoose.Schema({
     required: [true, "Description cannot be empty"],
   },
   diffculty: {
-    trype: String,
+    type: String,
     enum: ["easy", "medium", "hard"],
     required: [true, "diffculty cannot be empty"],
     default: "easy",
@@ -28,7 +28,7 @@ const problemSchema = new mongoose.Schema({
     },
   ],
   editorial: {
-    type: string,
+    type: String,
   },
 });
 
