@@ -25,4 +25,20 @@ export class ProblemService {
     }
     return problem;
   }
+
+  async deleteProblem(id) {
+    const problem = await this.problemRepository.deleteProblem(id);
+    if (!problem) {
+      throw new NotFoundError("Problem", "Id");
+    }
+    return problem;
+  }
+
+  async updateProblem(id, problemData) {
+    const problem = await this.problemRepository.updateProblem(id, problemData);
+    if (!problem) {
+      throw new NotFoundError("Problem", "Id");
+    }
+    return problem;
+  }
 }
