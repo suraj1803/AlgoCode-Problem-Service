@@ -1,3 +1,4 @@
+import { logger } from "../config/logger.config.js";
 import { NotFoundError } from "../errors/notfound.error.js";
 import { sanitizeMarkdown } from "../utils/index.js";
 
@@ -29,6 +30,7 @@ export class ProblemService {
   async deleteProblem(id) {
     const problem = await this.problemRepository.deleteProblem(id);
     if (!problem) {
+      logger.error(`Problem with id:${id} not found in the db`);
       throw new NotFoundError("Problem", "Id");
     }
     return problem;
