@@ -22,7 +22,8 @@ export class ProblemService {
   async getProblem(id) {
     const problem = await this.problemRepository.getProblem(id);
     if (!problem) {
-      throw new NotFoundError("Problem", "Id");
+      logger.error(`Problem with id:${id} not found in the db`);
+      throw new NotFoundError("ID", id);
     }
     return problem;
   }
@@ -31,7 +32,7 @@ export class ProblemService {
     const problem = await this.problemRepository.deleteProblem(id);
     if (!problem) {
       logger.error(`Problem with id:${id} not found in the db`);
-      throw new NotFoundError("Problem", "Id");
+      throw new NotFoundError("ID", id);
     }
     return problem;
   }
@@ -39,7 +40,8 @@ export class ProblemService {
   async updateProblem(id, problemData) {
     const problem = await this.problemRepository.updateProblem(id, problemData);
     if (!problem) {
-      throw new NotFoundError("Problem", "Id");
+      logger.error(`Problem with id:${id} not found in the db`);
+      throw new NotFoundError("ID", id);
     }
     return problem;
   }
